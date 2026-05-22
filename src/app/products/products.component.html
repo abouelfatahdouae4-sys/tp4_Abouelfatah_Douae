@@ -1,0 +1,39 @@
+<div class="products-container">
+  <div class="search-bar">
+    <input type="text" [(ngModel)]="searchQuery" placeholder="Search..." />
+    <button>Search</button>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of filteredProducts">
+        <td>{{ product.id }}</td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.price }}</td>
+        <td>
+          <button class="btn-delete" (click)="deleteProduct(product.id)">Delete</button>
+        </td>
+      </tr>
+      <tr *ngIf="filteredProducts.length === 0">
+        <td colspan="4" class="empty">No products found.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="add-form">
+    <h3>Add a product</h3>
+    <div class="form-row">
+      <input type="text" [(ngModel)]="newName" placeholder="Name" />
+      <input type="number" [(ngModel)]="newPrice" placeholder="Price" min="0" />
+      <button class="btn-add" (click)="addProduct()">Add</button>
+    </div>
+  </div>
+</div>
